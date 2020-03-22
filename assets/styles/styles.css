@@ -39,7 +39,7 @@ html, body {
   flex-direction: column;
   flex-wrap: nowrap;
   align-content: stretch;
-  background: url("../images/bg.png") center 100% no-repeat;
+  background: url("../images/b-g.png") center 100% no-repeat;
   background-size: cover;
 }
 

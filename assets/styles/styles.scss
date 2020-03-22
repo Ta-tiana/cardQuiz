@@ -125,8 +125,7 @@ html, body {
 .wrapper {
   @include size(100%, 100%);
   @include flex(center, center, column, nowrap);
-
-  background: url("../images/bg.png") center 100%  no-repeat;
+  background: url("../images/b-g.png") center 100%  no-repeat;
   background-size: cover;
 }
 
