@@ -1,0 +1,916 @@
+//abstracts*
+//------------------------------------
+
+//- Fonts
+@font-face {
+  font-family: 'NotoSans';
+  src: url('../fonts/noto/NotoSans.woff2') format('woff2'),
+  url('../fonts/noto/NotoSans.woff2') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MyriadPro';
+  src: url('../fonts/myriad/MyriadProRegular.woff') format('woff2'),
+  url('../fonts/myriad/MyriadProRegular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+//-Variables
+//----------
+//color for
+$primary: rgb(255, 255, 255);
+$secondary: #ff9604;
+$btn-sandy-bright: #ff9c04;
+$btn-sandy-dark: #ff6d01;
+$thirdly: rgb(62, 147, 159);
+$fourthly: #ff8202; //label-date
+$fifthly: #46586b; //
+
+//media for
+$viewport-4: 420px;
+$viewport-5: 480px;
+$viewport-6: 576px;
+$viewport-7: 720px;
+$viewport-8: 768px;
+$viewport-9:  900px;
+$viewport-10: 1024px;
+//$viewport-12: 1280px x 720 - main
+
+//-placeholders
+
+%button {
+  width: 230px;
+  height: 40px;
+  background: -moz-linear-gradient($btn-sandy-bright, $btn-sandy-dark);
+  background: -webkit-gradient(linear, 0 0, 0 100%, from($btn-sandy-bright), to($btn-sandy-dark));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$btn-sandy-bright', endColorstr='$btn-sandy-dark');
+  padding: 3px 7px;
+  color: $primary;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(12, 12, 12, .3);
+}
+
+//-mixins
+@mixin flex($ai: stretch, $jc: flex-start, $fd: row,$fw: nowrap, $ac: stretch) {
+  display: flex;
+  align-items: $ai;
+  justify-content: $jc;
+  flex-direction: $fd;
+  flex-wrap: $fw;
+  align-content: $ac;
+}
+
+@mixin size($w: none, $h: none) { //@mixin size($w: none, $h: $w)
+  width: $w;
+  height: $h;
+}
+
+@mixin padding ($pt: 0px, $pr: 0px, $pb: 0px, $pl: 0px){
+  padding: $pt $pr $pb $pl;
+}
+
+@mixin margin ($mt: 0px, $mr: 0px, $mb: 0px, $ml: 0px){
+  padding: $mt $mr $mb $ml;
+}
+
+@mixin font($ff, $fs, $lh, $fw, $c) {
+  font-family: $ff, Arial, sans-serif;
+  font-size: $fs;
+  line-height: $lh;
+  font-weight: $fw;
+  color: $c;
+}
+
+@mixin bg-color($color) {
+  -moz-background-origin: $color;
+  -webkit-background-origin: $color;
+  background: $color;
+}
+
+@mixin width-w($width) {
+  width: $width*0.86;
+}
+
+@mixin height-add-w($height) {
+  height: $height*1.86;
+}
+
+@mixin height-w($height) {
+  height: $height*0.86;
+}
+
+@mixin font-w($size) {
+  font-size: $size*0.86;
+}
+
+@mixin padding-w($padding) {
+  padding-left: $padding*0.76;
+  padding-right: $padding*0.76;
+}
+
+//layout
+//------------------------------------
+
+html, body {
+  @include size(100%, 100%);
+
+  margin: 0 auto;
+}
+
+.wrapper {
+  @include size(100%, 100%);
+  @include flex(center, center, column, nowrap);
+
+  background: url("../images/bg.png") center 100%  no-repeat;
+  background-size: cover;
+}
+
+.header {
+  @include flex(center, space-between);
+  @include size( 941px, 110px);
+  @media screen and (max-width: $viewport-10) {
+    @include width-w(941px);
+  }
+  @media screen and (max-width: $viewport-9) {
+    @include width-w(846px);
+  }
+  @media screen and (max-width: $viewport-8) {
+    @include width-w(761px);
+  }
+  @media screen and (max-width: $viewport-7) {
+    @include width-w(654px);
+  }
+  @media screen and (max-width: $viewport-6) {
+    @include width-w(540px);
+  }
+  @media screen and (max-width: $viewport-5) {
+    @include flex(center, space-evenly, column);
+    @include width-w(464px);
+    @include height-add-w(80px);
+  }
+  @media screen and (max-width: $viewport-4) {
+    @include width-w(360px);
+  }
+
+  &__logo {
+    @include size(272px);
+    @include flex(stretch, space-between);
+    & > a {
+      margin-right: 10px;
+    }
+    @media screen and (max-width: $viewport-7) {
+      @include width-w(272px);
+    }
+    @media screen and (max-width: $viewport-5) {
+      @include width-w(464px);
+    }
+    @media screen and (max-width: $viewport-4) {
+      @include width-w(360px);
+    }
+  }
+
+  &__consultation {
+    @include size(273px, 35px);
+    @include flex(center, space-evenly);
+    padding: 0 10px;
+    border: 2px solid rgba($primary, .6);
+    border-radius: 5px;
+    outline: none;
+    @include bg-color(rgba($primary, .6));
+    @media screen and (max-width: $viewport-7) {
+      @include width-w(220px);
+      @include height-add-w(35px);
+    }
+    @media screen and (max-width: $viewport-5) {
+      @include width-w(464px);
+    }
+    @media screen and (max-width: $viewport-4) {
+      @include width-w(360px);
+    }
+
+    & > span {
+      @include font("NotoSans", 14px, 22px, normal , rgba($thirdly, .8));
+      text-shadow: 0.2px 0.2px 0 $thirdly;
+    }
+  }
+}
+
+.card {
+  @include flex(center, center);
+  @include size(941px, 473px);
+  background-color: rgba($primary, .3) ;
+  border-radius: 10px;
+  box-shadow: 0 13px 9px -4px rgba(0,0,0, .6);
+  display: none;
+  @media screen and (max-width: $viewport-10) {
+    @include width-w(941px);
+  }
+  @media screen and (max-width: $viewport-9) {
+    @include width-w(846px);
+  }
+  @media screen and (max-width: $viewport-8) {
+    @include width-w(761px);
+  }
+  @media screen and (max-width: $viewport-7) {
+    @include width-w(654px);
+  }
+  @media screen and (max-width: $viewport-6) {
+    @include width-w(540px);
+  }
+  @media screen and (max-width: $viewport-5) {
+    @include width-w(464px);
+  }
+  @media screen and (max-width: $viewport-4) {
+    @include width-w(360px);
+  }
+
+  &__inner {
+    @include flex(center, space-between, column, nowrap);
+    @include size(99.3%, 99.3%);
+    background: url("../images/card-bg.png") center 100%;
+    border: 1px solid rgba($primary, .7);
+    border-radius: 10px;
+  }
+
+  &__header {
+    @include size(auto, 150px);
+    @include flex(center, space-evenly, column, nowrap);
+    padding-top: 20px;
+    @media screen and (max-width: $viewport-7) {
+      @include width-w(654px);
+    }
+    @media screen and (max-width: $viewport-6) {
+      @include width-w(540px);
+      padding-top: 30px;
+    }
+    @media screen and (max-width: $viewport-5) {
+      @include width-w(464px);
+      padding-top: 15px;
+    }
+    @media screen and (max-width: $viewport-4) {
+      @include width-w(360px);
+      padding-top: 25px;
+    }
+  }
+
+  &__title {
+    @include font("Montserrat", 45px, normal, bold, $primary);
+    @media screen and (max-width: $viewport-7) {
+      @include width-w(100%);
+      @include font-w(45px);
+      text-align: center;
+    }
+    @media screen and (max-width: $viewport-6) {
+      @include font-w(40px);
+    }
+    @media screen and (max-width: $viewport-5) {
+      @include font-w(34px);
+    }
+    @media screen and (max-width: $viewport-4) {
+      @include font-w(26px);
+    }
+  }
+
+  &__description {
+    @include size(73%);
+    @include font("Montserrat", 14px, 22px, lighter, $primary);
+    @media screen and (max-width: $viewport-7){
+      @include width-w(100%);
+    }
+    @media screen and (max-width: $viewport-5) {
+      @include font-w(14px);
+    }
+
+    & > p {
+      text-align: center;
+      padding: 0 70px;
+      @media screen and (max-width: $viewport-10) {
+        @include padding-w(70px);
+      }
+      @media screen and (max-width: $viewport-9) {
+        @include padding-w(53px);
+      }
+      @media screen and (max-width: $viewport-7){
+        @include padding-w(38px);
+      }
+      @media screen and (max-width: $viewport-6){
+        @include padding-w(28px);
+        padding-top: 20px;
+      }
+      @media screen and (max-width: $viewport-5) {
+        @include padding-w(18px);
+        @include font-w(14px);
+        padding-bottom: 10px;
+      }
+      @media screen and (max-width: $viewport-4) {
+        @include padding-w(12px);
+        @include font-w(12px);
+        padding-bottom: 0;
+      }
+
+      & > span {
+        @include font("Montserrat", 14px, normal, bold, $secondary);
+      }
+    }
+  }
+
+  &__body {
+    @include size(582px, 160px);
+    @include flex(normal, center);
+    @media screen and (max-width: $viewport-7) {
+      @include width-w(654px);
+    }
+    @media screen and (max-width: $viewport-6) {
+      @include width-w(540px);
+    }
+    @media screen and (max-width: $viewport-5) {
+      @include width-w(464px);
+      padding-bottom: 20px;
+    }
+    @media screen and (max-width: $viewport-4) {
+      @include width-w(360px);
+    }
+  }
+
+  &__form {
+    @include flex(normal, space-evenly, column);
+    padding-bottom: 20px;
+    @media screen and (max-width: $viewport-6) {
+     padding: 0;
+    }
+    @media screen and (max-width: $viewport-4) {
+      padding: 10px 0 10px 0;
+    }
+
+    & > label {
+      @include font("Montserrat", 14px, normal, bold, $secondary);
+    }
+  }
+
+  &__list {
+    @include size(auto, 30px);
+    border-radius: 5px;
+  }
+
+  &__button {
+    @extend %button;
+    text-transform: uppercase;
+    @include font("NotoSans", 16px, normal, bold, $primary);
+    text-shadow: 0 1px 2px rgba(12, 12, 12, 0.4);
+    border: 0;
+    margin-top: 10px;
+  }
+
+  &__logos {
+    @include flex(center, space-evenly);
+    @include size(99.8%);
+    @include bg-color(rgba(12, 12, 12, .7));
+    padding: 10px 0;
+    @media screen and (max-width: $viewport-5) {
+      @include flex(center, space-evenly, row, wrap);
+      padding: 10px 40px;
+      height: 24%;
+    }
+    @media screen and (max-width: $viewport-4) {
+      height: 20%;
+    }
+  }
+
+  &__image {
+    height:100%;
+    @media screen and (max-width: $viewport-10) {
+        height:85%;
+    }
+    @media screen and (max-width: $viewport-9) {
+        height:75%;
+    }
+    @media screen and (max-width: $viewport-7) {
+        height:65%;
+    }
+    @media screen and (max-width: $viewport-6) {
+        height:55%;
+    }
+    @media screen and (max-width: $viewport-5) {
+        height:40%;
+    }
+    @media screen and (max-width: $viewport-4) {
+        height:34%;
+    }
+  }
+
+  &__requests {
+    @include size(100%, 30px);
+    @include flex(center, start);
+    @include font("Montserrat", 14px, normal, lighter, $primary);
+    margin-bottom: 10px;
+    @media screen and (max-width: $viewport-5) {
+      @include flex(center, center);
+      margin: 10px 0 10px 0;
+    }
+
+    & > div {
+      @include flex(center, space-evenly);
+      @include size(325px, 30px);
+      text-align: start;
+      @media screen and (max-width: $viewport-5) {
+        @include width-w(325px);
+        @include font-w(14px);
+      }
+
+      & span:first-child {
+        @include size(95px, 27px);
+        background: url("../images/calc-requests.png") no-repeat;
+        @include flex(center, center);
+        text-align: center;
+      }
+
+      & span:last-child {
+        @include font("Montserrat", 18px, normal, bold, $secondary);
+        @media screen and (max-width: $viewport-5) {
+          @include font-w(18px);
+        }
+      }
+    }
+  }
+}
+
+.step2 {
+
+  &__header {
+    @include size(auto, 110px);
+    @media screen and (max-width: $viewport-6) {
+      @include height-w(110px);
+    }
+    @media screen and (max-width: $viewport-5) {
+      @include height-w(94px);
+    }
+    @media screen and (max-width: $viewport-4) {
+      @include height-w(80px);
+    }
+  }
+
+  &__title {
+    @include font("Montserrat", 34px, normal, bold, $secondary);
+    @media screen and (max-width: $viewport-8) {
+      @include font-w(34px);
+    }
+    @media screen and (max-width: $viewport-7) {
+      @include font-w(29px);
+      @include size(100%);
+    }
+    @media screen and (max-width: $viewport-6) {
+      @include font-w(24px);
+    }
+    @media screen and (max-width: $viewport-5) {
+      @include font-w(20px);
+    }
+    @media screen and (max-width: $viewport-4) {
+      @include font-w(18px);
+    }
+  }
+
+  &__body {
+    @include size(582px, 250px);
+  }
+
+  &__form {
+    padding-bottom: 52px;
+  }
+
+  &__year {
+    @include flex(center, space-between);
+
+    & > button {
+      @include font("Montserrat", 44px, normal, lighter, $secondary);
+      margin: 0 5px;
+      outline: 0;
+      border: 0;
+      background: transparent;
+    }
+  }
+
+  &__textarea {
+    @include size(130px, 80px);
+    border-radius: 5px;
+    resize: none;
+    text-align: center;
+    padding: 18px;
+    @include font("Montserrat", 34px, normal, lighter, $fifthly);
+  }
+
+  &__button {
+    @include font("MyriadPro", 16px, normal, bold, $primary);
+  }
+}
+
+.step3 {
+
+  &__header {
+    @include size(auto, 110px);
+    @media screen and (max-width: $viewport-7) {
+      padding-top: 0;
+    }
+    @media screen and (max-width: $viewport-6) {
+      @include height-w(110px);
+    }
+    @media screen and (max-width: $viewport-5) {
+      @include height-w(94px);
+    }
+    @media screen and (max-width: $viewport-4) {
+      @include height-w(80px);
+    }
+  }
+
+  &__title {
+    @include font("Montserrat", 45px, normal, bold, $primary);
+    @media screen and (max-width: $viewport-10) {
+      @include font-w(45px);
+    }
+    @media screen and (max-width: $viewport-8) {
+      @include font-w(38px);
+    }
+    @media screen and (max-width: $viewport-7) {
+      @include size(100%);
+      @include font-w(32px);
+    }
+    @media screen and (max-width: $viewport-6) {
+      @include font-w(27px);
+    }
+    @media screen and (max-width: $viewport-5) {
+      @include font-w(23px);
+    }
+    @media screen and (max-width: $viewport-4) {
+      @include font-w(18px);
+    }
+  }
+
+  &__merge {
+    @media screen and (max-width: $viewport-10) {
+      @include size(85%, 100%);
+      @include flex(center, space-between);
+      border-top: 1px solid $primary;
+    }
+    @media screen and (max-width: $viewport-7) {
+      @include size(100%, 100%);
+      @include flex(center, evenly, column);
+    }
+  }
+
+  &__body {
+    @include flex(center, space-between);
+    @include size(710px, 190px);
+    border-top: 1px solid $primary;
+    border-bottom: 1px solid $primary;
+    @media screen and (max-width: $viewport-10) {
+      @include flex(stretch, space-evenly, column);
+      @include size(50%, 100%);
+      border: 0;
+    }
+    @media screen and (max-width: $viewport-7) {
+      @include flex(center, space-around, row, nowrap);
+      @include size(100%);
+      padding-top: 15px;
+    }
+    @media screen and (max-width: $viewport-4) {
+      padding: 0;
+    }
+  }
+
+  &__details {
+    //@include size(582px, 250px);
+    @include font("Montserrat", 14px, normal, ligth, $primary);
+    list-style: disc;
+    padding-left: 14px;
+    @media screen and (max-width: $viewport-10) {
+      @include font-w(14px);
+    }
+    @media screen and (max-width: $viewport-8) {
+      padding-left: 0;
+      list-style: disc inside;
+    }
+    @media screen and (max-width: $viewport-7) {
+      @include font-w(14px);
+      list-style: disc inside;
+    }
+
+    & li {
+      @include font("Montserrat", 10px, 22px, lighter, $primary);
+      padding-left: 18px;
+      @media screen and (max-width: $viewport-10) {
+        @include font-w(10px);
+      }
+      @media screen and (max-width: $viewport-8) {
+        padding-left: 0;
+      }
+      @media screen and (max-width: $viewport-7) {
+        @include font-w(8.6px);
+      }
+      @media screen and (max-width: $viewport-6) {
+        @include font-w(7.2px);
+      }
+      @media screen and (max-width: $viewport-6) {
+        @include font-w(6px);
+      }
+
+      &:first-line {
+        @include font("Montserrat", 14px, 22px, lighter, $primary);
+        @media screen and (max-width: $viewport-10) {
+          @include font-w(14px);
+        }
+        @media screen and (max-width: $viewport-7) {
+          @include font-w(12px);
+        }
+        @media screen and (max-width: $viewport-6) {
+          @include font-w(10px);
+        }
+      }
+
+      & > span {
+        @include font("Montserrat", 14px, normal, bold, $secondary);
+        @media screen and (max-width: $viewport-10) {
+          @include font-w(14px);
+        }
+        @media screen and (max-width: $viewport-7) {
+          @include font-w(12px);
+        }
+        @media screen and (max-width: $viewport-6) {
+          @include font-w(10px);
+        }
+      }
+    }
+  }
+
+  &__total {
+    @include size(auto, 100%);
+    @include flex(flex-start, space-evenly, column);
+    @include font("Montserrat", 14px, normal, bold, $primary);
+    @media screen and (max-width: $viewport-10) {
+      @include flex(stretch, space-evenly, column);
+      @include size(auto, auto);
+    }
+    @media screen and (max-width: $viewport-7) {
+      @include flex(center, space-evenly, column);
+      @include size(30%, auto);
+    }
+    @media screen and (max-width: $viewport-4) {
+      @include flex(center, space-evenly, column);
+      @include size(22%, auto);
+    }
+  }
+
+  &__offers {
+    padding-left: 18px;
+    @media screen and (max-width: $viewport-10) {
+      @include flex(center, flex-start);
+      padding-left: 0;
+    }
+    @media screen and (max-width: $viewport-7) {
+      @include flex(normal, flex-start, column, mwrap);
+      @include size(90%, auto);
+      padding-left: 0;
+    }
+    @media screen and (max-width: $viewport-5) {
+      @include flex(normal, flex-start, column, mwrap);
+      @include size(100%, auto);
+    }
+
+    & > p {
+      @include font("Montserrat", 17px, normal, bold, $secondary);
+      margin-top: 10px;
+      @media screen and (max-width: $viewport-10) {
+        @include flex(center);
+        margin-top: 0;
+      }
+      @media screen and (max-width: $viewport-8) {
+        @include font-w(17px);
+      }
+      @media screen and (max-width: $viewport-7) {
+        @include font-w(14px);
+      }
+      @media screen and (max-width: $viewport-4) {
+        @include flex(center,center, row, wrap);
+        @include font-w(10px);
+      }
+
+      & > span {
+        @include font("Montserrat", 34px, normal, bold, $secondary);
+        @media screen and (max-width: $viewport-10) {
+          @include font-w(34px);
+          @include size(45px, auto);
+        }
+        @media screen and (max-width: $viewport-7) {
+          @include size(40px, auto);
+        }
+        @media screen and (max-width: $viewport-4) {
+          @include size(20px, auto);
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    & > span {
+      @media screen and (max-width: $viewport-10) {
+        padding: 0 20px 0 0;
+      }
+      @media screen and (max-width: $viewport-8) {
+        padding: 0 10px 0 0;
+      }
+      @media screen and (max-width: $viewport-7) {
+        padding: 0 0 20px 0;
+      }
+      @media screen and (max-width: $viewport-4) {
+        @include font-w(10px);
+      }
+    }
+  }
+
+  &__footer {
+    @include size(710px, 150px);
+    @include flex(center, space-between);
+    @media screen and (max-width: $viewport-10) {
+      @include size(auto, 100%);
+    }
+  }
+
+  &__form {
+    @include size(100%, auto);
+    @include flex(flex-end, space-between, row);
+    @media screen and (max-width: $viewport-10) {
+      @include flex(stretch, space-evenly, column);
+      @include size(auto, 100%);
+    }
+    @media screen and (max-width: $viewport-7) {
+      @include flex(center, space-around, row, wrap);
+    }
+    @media screen and (max-width: $viewport-7) {
+      padding-bottom: 5px;
+    }
+    @media screen and (max-width: $viewport-4) {
+      padding: 0 0 10px 0;
+    }
+
+    & label {
+      @include size(220px, auto);
+      @media screen and (max-width: $viewport-7) {
+        @include size(200px, 40px);
+      }
+      @media screen and (max-width: $viewport-6) {
+        @include size(160px, 40px);
+      }
+      @media screen and (max-width: $viewport-5) {
+        @include font-w(14px);
+      }
+      @media screen and (max-width: $viewport-5) {
+        @include font-w(12px);
+      }
+    }
+  }
+
+  &__name,
+  &__tel {
+    @include size(220px, 40px);
+    border-radius: 5px;
+    border: 0;
+    margin-top: 5px;
+    padding: 0 20px;
+    @media screen and (max-width: $viewport-10) {
+      @include size(230px, 40px);
+      margin-top: 15px;
+    }
+    @media screen and (max-width: $viewport-7) {
+      @include size(200px, 40px);
+    }
+    @media screen and (max-width: $viewport-6) {
+      @include size(160px, 30px);
+      margin-top: 10px;
+    }
+    @media screen and (max-width: $viewport-5) {
+      @include size(160px, 30px);
+      margin-top: 5px;
+    }
+  }
+
+  &__year {
+    @include flex(center, space-between);
+
+    & > span {
+      @include font("Montserrat", 44px, normal, lighter, $secondary);
+      margin: 0 5px;
+    }
+  }
+
+  &__textarea {
+    @include size(130px, 80px);
+    border-radius: 5px;
+    resize: none;
+    text-align: center;
+    padding: 18px;
+    @include font("Montserrat", 34px, normal, lighter, $fifthly);
+  }
+
+  &__logos {
+    @include flex(flex-end, space-between, row);
+    background: none;
+    padding-top: 15px;
+    @media screen and (max-width: $viewport-10) {
+      @include size(100%, 100%);
+      padding-top: 10px;
+    }
+    @media screen and (max-width: $viewport-8) {
+      display: none;
+    }
+  }
+
+  &__image {
+    @media screen and (max-width: $viewport-10) {
+      height:90%;
+    }
+    @media screen and (max-width: $viewport-9) {
+      height:85%;
+    }
+  }
+
+  &__button {
+    margin: 0;
+    @media screen and (max-width: $viewport-10) {
+      margin-top: 15px;
+    }
+  }
+}
+
+.step4 {
+
+  &__header {
+    padding: 0 0 40px 0;
+    @media screen and (max-width: $viewport-10) {
+      padding: 0 90px 40px 90px;
+    }
+    @media screen and (max-width: $viewport-9) {
+      @include padding-w(90px);
+    }
+    @media screen and (max-width: $viewport-8) {
+      @include font-w(45px);
+      @include padding-w(80px);
+    }
+    @media screen and (max-width: $viewport-7) {
+      @include font-w(38px);
+      @include size(100%);
+      @include padding-w(70px);
+    }
+    @media screen and (max-width: $viewport-6) {
+      @include font-w(24px);
+      @include height-w(110px);
+      @include padding-w(60px);
+    }
+    @media screen and (max-width: $viewport-5) {
+      @include font-w(20px);
+      @include height-w(94px);
+      @include padding-w(45px);
+    }
+    @media screen and (max-width: $viewport-4) {
+      @include font-w(18px);
+      @include height-w(80px);
+      @include padding-w(90px);
+    }
+  }
+
+  &__inner {
+    @include flex(center, space-evenly, row, nowrap);
+  }
+
+  &__description {
+    @include font("Montserrat", 24px, 32px, bold, $secondary);
+    @include size(100%, auto);
+    text-align: center;
+    margin-top: 10px;
+    @media screen and (max-width: $viewport-8) {
+      @include font-w(24px);
+    }
+    @media screen and (max-width: $viewport-7) {
+      @include font-w(22px);
+      @include size(100%);
+      line-height: 28px;
+    }
+    @media screen and (max-width: $viewport-6) {
+      @include font-w(18px);
+      line-height: 24px;
+    }
+    @media screen and (max-width: $viewport-5) {
+      @include font-w(16px);
+      line-height: 22px;
+    }
+    @media screen and (max-width: $viewport-4) {
+      @include font-w(14px);
+      line-height: 20px;
+    }
+  }
+}
+
+.show {
+  display: flex;
+ }

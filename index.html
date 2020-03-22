@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link href = "./assets/styles/styles.css" rel="stylesheet">
+    <link href = "./assets/styles/reset.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.js" type="text/javascript"></script>
+    <script type="text/javascript" src="./assets/scripts/script.js" defer></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+          <div class="header__logo">
+            <a href="#"><img src="assets/images/logo.png" alt="image"></a>
+            <img src="assets/images/casco.png" alt="image">
+          </div>
+          <button class="header__consultation">
+            <img src="assets/images/msg.png" alt="image">
+            <span>Индивидуальная консультация</span>
+          </button>
+      </header>
+      <main>
+
+        <div class="card step1 show" data-id="1">
+          <div class="card__inner">
+            <div class="card__header">
+              <h2 class="card__title">
+                Подбор Каско on-line
+              </h2>
+              <div class="card__description">
+                <p>Ответьте на <span>7 вопросов</span> и наш сервис подберет для Вас самое выгодное предложение</p>
+              </div>
+            </div>
+            <div class="card__body">
+              <form name="type" action="./assets/scripts/handler.php" class="card__form">
+                <label>1.Марка вашего авто:</label>
+                <select aria-label="list" class="card__list" type="text" name="car-type" required>
+                  <option value="renault" selected>Renault</option>
+                  <option value="audi">Audi</option>
+                </select>
+                <button class="card__button next" type="submit">рассчитать</button>
+              </form>
+            </div>
+            <div class="card__logos">
+              <img class="card__image" src="assets/images/logo1.png" alt="image">
+              <img class="card__image" src="assets/images/logo2.png" alt="image">
+              <img class="card__image" src="assets/images/logo3.png" alt="image">
+              <img class="card__image" src="assets/images/logo4.png" alt="image">
+              <img class="card__image" src="assets/images/logo5.png" alt="image">
+              <img class="card__image" src="assets/images/logo6.png" alt="image">
+            </div>
+            <div class="card__footer card__requests">
+              <div>
+                <span>23.06.2019</span>Обработано заявок:<span>984</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card step2" data-id="2">
+          <div class="card__inner">
+            <div class="card__header step2__header">
+              <h2 class="card__title step2__title">
+                2. Год выпуска автомобиля:
+              </h2>
+            </div>
+            <div class="card__body step2__body">
+              <form name="year" action="./assets/scripts/handler.php" class="card__form step2__form">
+                <div class="step2__year">
+                  <button id="minus">-</button>
+                  <input id="year-field" class="step2__textarea" aria-label="list" name="year"
+                         type="text" value="2011" required>
+                  <button id="plus">+</button>
+                </div>
+                <button class="card__button step2__button next" type="submit">далее</button>
+              </form>
+            </div>
+            <div class="card__footer card__requests">
+              <div>
+                <span>23.06.2019</span>Обработано заявок:<span>984</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card step3" data-id="3">
+          <div class="card__inner">
+            <div class="card__header step3__header">
+              <h2 class="card__title step3__title">
+                Данные для подбора КАСКО:
+              </h2>
+            </div>
+            <div class="step3__merge">
+              <div class="card__body step3__body">
+                <ul class="step3__details">
+                  <li>Марка вашего авто: <span>АУДИ</span></li>
+                  <li>Год выпуска автомобиля: <span>2015</span></li>
+                  <li>Ориентировочная стоимость: <span>12 000$</span></li>
+                  <li>Стаж вождения: <span>5 лет</span></li>
+                  <li>Страховка от угона: <span>да</span></li>
+                  <li>Количество водителей: <span>мультидрайв</span></li>
+                  <li>Действие КАСКО за границей: <span>да</span></li>
+                </ul>
+                <div class="step3__total">
+                  <div class="step3__offers">
+                    <span>Подобрано:</span>
+                    <p><span>3</span> оптимальных предложения</p>
+                  </div>
+                  <div class="card__logos step3__logos">
+                    <img class="step3__image" src="assets/images/logo2.png" alt="image">
+                    <img class="step3__image" src="assets/images/logo1.png" alt="image">
+                    <img class="step3__image" src="assets/images/logo3.png" alt="image">
+                  </div>
+                </div>
+              </div>
+              <div class="card__footer step3__footer">
+                <form name="contacts" action="./assets/scripts/handler.php" class="card__form step3__form">
+                  <label>Как к Вам обращаться?
+                    <input aria-label="name" class="step3__name" type="text" name="name"
+                           placeholder="Имя" required>
+                  </label>
+                  <label>Телефон для расчета
+                    <input aria-label="tel" class="step3__tel step3__mask"
+                           type="tel" name="tel" placeholder="+375 __ ___ __ __"
+                           pattern="\+375\([0-9]{2}\)[0-9]{3}-[0-9]{2}-[0-9]{2}" required>
+                  </label>
+                  <script>
+                    $(".step3__mask").mask("+375(99)999-99-99");
+                  </script>
+                  <button class="card__button step3__button next" type="submit">получить расчет</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card step4" data-id="4">
+          <div class="card__inner step4__inner">
+            <div class="card__header step4__header">
+              <h2 class="card__title ">
+                Спасибо!
+              </h2>
+              <p class="card__description step4__description">Ваша заявка отправлена, наш менеждер свяжется с Вами</p>
+            </div>
+          </div>
+        </div>
+
+      </main>
+      <footer>
+      </footer>
+    </div>
+  </body>
+</html>
