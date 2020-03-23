@@ -37,26 +37,28 @@
               </div>
             </div>
             <div class="card__body">
-              <form name="type" action="./assets/scripts/handler.php" class="card__form">
-                <label>1.Марка вашего авто:</label>
-                <select aria-label="list" class="card__list" type="text" name="car-type" required>
+              <div class="card__form">
+                <label for="car-type">1.Марка вашего авто:</label>
+                <select id="car-type" class="card__list" name="car-type" required>
                   <option value="renault" selected>Renault</option>
                   <option value="audi">Audi</option>
                 </select>
                 <button class="card__button next" type="submit">рассчитать</button>
-              </form>
+              </div>
             </div>
-            <div class="card__logos">
-              <img class="card__image" src="assets/images/logo1.png" alt="image">
-              <img class="card__image" src="assets/images/logo2.png" alt="image">
-              <img class="card__image" src="assets/images/logo3.png" alt="image">
-              <img class="card__image" src="assets/images/logo4.png" alt="image">
-              <img class="card__image" src="assets/images/logo5.png" alt="image">
-              <img class="card__image" src="assets/images/logo6.png" alt="image">
-            </div>
-            <div class="card__footer card__requests">
-              <div>
-                <span>23.06.2019</span>Обработано заявок:<span>984</span>
+            <div class="card__footer">
+              <div class="card__logos">
+                <img class="card__image" src="assets/images/logo1.png" alt="image">
+                <img class="card__image" src="assets/images/logo2.png" alt="image">
+                <img class="card__image" src="assets/images/logo3.png" alt="image">
+                <img class="card__image" src="assets/images/logo4.png" alt="image">
+                <img class="card__image" src="assets/images/logo5.png" alt="image">
+                <img class="card__image" src="assets/images/logo6.png" alt="image">
+              </div>
+              <div class="card__requests">
+                <div>
+                  <span>23.06.2019</span>Обработано заявок:<span>984</span>
+                </div>
               </div>
             </div>
           </div>
@@ -70,7 +72,7 @@
               </h2>
             </div>
             <div class="card__body step2__body">
-              <form name="year" action="./assets/scripts/handler.php" class="card__form step2__form">
+              <div class="card__form step2__form">
                 <div class="step2__year">
                   <button id="minus">-</button>
                   <input id="year-field" class="step2__textarea" aria-label="list" name="year"
@@ -78,7 +80,7 @@
                   <button id="plus">+</button>
                 </div>
                 <button class="card__button step2__button next" type="submit">далее</button>
-              </form>
+              </div>
             </div>
             <div class="card__footer card__requests">
               <div>
@@ -120,6 +122,8 @@
               </div>
               <div class="card__footer step3__footer">
                 <form name="contacts" action="./assets/scripts/handler.php" class="card__form step3__form">
+                  <input aria-label="year" class="hide" type="text" name="year">
+                  <input aria-label="car-type" class="hide" type="text" name="car-type">
                   <label>Как к Вам обращаться?
                     <input aria-label="name" class="step3__name" type="text" name="name"
                            placeholder="Имя" required>
